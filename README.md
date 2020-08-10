@@ -2,10 +2,9 @@
   <a href="https://github.com/ImAiiR/QobuzDownloaderX">
     <img src="https://github.com/ImAiiR/QobuzDownloaderX/raw/master/QobuzDownloaderX/Resources/qbdlx.png?raw=true" />
   </a>
-  <a href="https://ko-fi.com/I3I41A5DY">
-    <img src="https://www.ko-fi.com/img/githubbutton_sm.svg" />
-  </a>
 </p>
+<center><a href="https://www.buymeacoffee.com/ImAiiR" target="_blank"><img src="https://i.imgur.com/H2hMOg6.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a></center>
+
 
 Inspired by Qo-DL by <a href="https://github.com/Sorrow446">Sorrow</a> & <a href="https://github.com/DashLt">Dash</a>
 
@@ -14,6 +13,9 @@ Inspired by Qo-DL by <a href="https://github.com/Sorrow446">Sorrow</a> & <a href
     <img src="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/-assets/QBDLX2.png?raw=true" />
   </a>
 </p>
+
+Telegram Group Chat - <a href="https://t.me/QbdLX">@QbdLX</a><br />
+Telegram Updates Channel - <a href="https://t.me/QobuzDownloaderX">@QobuzDownloaderX</a>
 
 # About
 QobuzDownloaderX is a program for downloading music streams from the streaming platform <a href="https://qobuz.com/">Qobuz</a>.

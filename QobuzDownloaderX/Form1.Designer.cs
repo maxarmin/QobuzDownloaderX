@@ -99,6 +99,14 @@
             this.displaySecretButton = new System.Windows.Forms.Button();
             this.profilePictureBox = new System.Windows.Forms.PictureBox();
             this.logoutLabel = new System.Windows.Forms.Label();
+            this.downloadLabelBG = new System.ComponentModel.BackgroundWorker();
+            this.hiddenTextPanel = new System.Windows.Forms.Panel();
+            this.downloadFaveAlbumsBG = new System.ComponentModel.BackgroundWorker();
+            this.downloadFaveArtistsBG = new System.ComponentModel.BackgroundWorker();
+            this.artSizeSelect = new System.Windows.Forms.ComboBox();
+            this.artSizeLabel = new System.Windows.Forms.Label();
+            this.typeCheckbox = new System.Windows.Forms.CheckBox();
+            this.aboutLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
@@ -337,9 +345,9 @@
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
             this.label6.Location = new System.Drawing.Point(12, 70);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 13);
+            this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 49;
-            this.label6.Text = "Qobuz Album / Track Link";
+            this.label6.Text = "Qobuz Link";
             // 
             // totalTracksTextbox
             // 
@@ -865,20 +873,29 @@
             // 
             // secretTextbox
             // 
-            this.secretTextbox.Location = new System.Drawing.Point(352, 34);
+            this.secretTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.secretTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.secretTextbox.ForeColor = System.Drawing.Color.White;
+            this.secretTextbox.Location = new System.Drawing.Point(352, 35);
+            this.secretTextbox.Multiline = true;
             this.secretTextbox.Name = "secretTextbox";
+            this.secretTextbox.ReadOnly = true;
             this.secretTextbox.Size = new System.Drawing.Size(209, 20);
             this.secretTextbox.TabIndex = 92;
             this.secretTextbox.Visible = false;
             // 
             // displaySecretButton
             // 
+            this.displaySecretButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(239)))));
+            this.displaySecretButton.FlatAppearance.BorderSize = 0;
+            this.displaySecretButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.displaySecretButton.ForeColor = System.Drawing.Color.White;
             this.displaySecretButton.Location = new System.Drawing.Point(243, 32);
             this.displaySecretButton.Name = "displaySecretButton";
             this.displaySecretButton.Size = new System.Drawing.Size(103, 23);
             this.displaySecretButton.TabIndex = 93;
             this.displaySecretButton.Text = "Display appSecret";
-            this.displaySecretButton.UseVisualStyleBackColor = true;
+            this.displaySecretButton.UseVisualStyleBackColor = false;
             this.displaySecretButton.Visible = false;
             this.displaySecretButton.Click += new System.EventHandler(this.displaySecretButton_Click);
             // 
@@ -903,12 +920,96 @@
             this.logoutLabel.MouseLeave += new System.EventHandler(this.logoutLabel_MouseLeave);
             this.logoutLabel.MouseHover += new System.EventHandler(this.logoutLabel_MouseHover);
             // 
+            // downloadLabelBG
+            // 
+            this.downloadLabelBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadLabelBG_DoWork);
+            // 
+            // hiddenTextPanel
+            // 
+            this.hiddenTextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.hiddenTextPanel.Location = new System.Drawing.Point(352, 55);
+            this.hiddenTextPanel.Name = "hiddenTextPanel";
+            this.hiddenTextPanel.Size = new System.Drawing.Size(209, 1);
+            this.hiddenTextPanel.TabIndex = 87;
+            this.hiddenTextPanel.Visible = false;
+            // 
+            // downloadFaveAlbumsBG
+            // 
+            this.downloadFaveAlbumsBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadFaveAlbumsBG_DoWork);
+            // 
+            // downloadFaveArtistsBG
+            // 
+            this.downloadFaveArtistsBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadFaveArtistsBG_DoWork);
+            // 
+            // artSizeSelect
+            // 
+            this.artSizeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.artSizeSelect.FormattingEnabled = true;
+            this.artSizeSelect.Items.AddRange(new object[] {
+            "max",
+            "600",
+            "300",
+            "150",
+            "100",
+            "50"});
+            this.artSizeSelect.Location = new System.Drawing.Point(634, 538);
+            this.artSizeSelect.Name = "artSizeSelect";
+            this.artSizeSelect.Size = new System.Drawing.Size(121, 21);
+            this.artSizeSelect.TabIndex = 96;
+            this.artSizeSelect.SelectedIndexChanged += new System.EventHandler(this.artSizeSelect_SelectedIndexChanged);
+            // 
+            // artSizeLabel
+            // 
+            this.artSizeLabel.AutoSize = true;
+            this.artSizeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.artSizeLabel.Location = new System.Drawing.Point(530, 541);
+            this.artSizeLabel.Name = "artSizeLabel";
+            this.artSizeLabel.Size = new System.Drawing.Size(246, 13);
+            this.artSizeLabel.TabIndex = 97;
+            this.artSizeLabel.Text = "Embedded Art Size:                                             px";
+            // 
+            // typeCheckbox
+            // 
+            this.typeCheckbox.AutoSize = true;
+            this.typeCheckbox.Checked = true;
+            this.typeCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.typeCheckbox.FlatAppearance.BorderSize = 0;
+            this.typeCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.typeCheckbox.Location = new System.Drawing.Point(533, 563);
+            this.typeCheckbox.Name = "typeCheckbox";
+            this.typeCheckbox.Size = new System.Drawing.Size(92, 17);
+            this.typeCheckbox.TabIndex = 98;
+            this.typeCheckbox.Text = "Release Type";
+            this.typeCheckbox.UseVisualStyleBackColor = true;
+            this.typeCheckbox.CheckedChanged += new System.EventHandler(this.typeCheckbox_CheckedChanged);
+            // 
+            // aboutLabel
+            // 
+            this.aboutLabel.AutoSize = true;
+            this.aboutLabel.BackColor = System.Drawing.Color.Transparent;
+            this.aboutLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aboutLabel.ForeColor = System.Drawing.Color.White;
+            this.aboutLabel.Location = new System.Drawing.Point(866, 8);
+            this.aboutLabel.Name = "aboutLabel";
+            this.aboutLabel.Size = new System.Drawing.Size(15, 23);
+            this.aboutLabel.TabIndex = 99;
+            this.aboutLabel.Text = "i";
+            this.aboutLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.aboutLabel.Click += new System.EventHandler(this.aboutLabel_Click);
+            this.aboutLabel.MouseLeave += new System.EventHandler(this.aboutLabel_MouseLeave);
+            this.aboutLabel.MouseHover += new System.EventHandler(this.aboutLabel_MouseHover);
+            // 
             // QobuzDownloaderX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ClientSize = new System.Drawing.Size(938, 533);
+            this.ClientSize = new System.Drawing.Size(938, 733);
+            this.Controls.Add(this.aboutLabel);
+            this.Controls.Add(this.typeCheckbox);
+            this.Controls.Add(this.artSizeSelect);
+            this.Controls.Add(this.artSizeLabel);
+            this.Controls.Add(this.hiddenTextPanel);
             this.Controls.Add(this.logoutLabel);
             this.Controls.Add(this.profilePictureBox);
             this.Controls.Add(this.displaySecretButton);
@@ -1061,6 +1162,14 @@
         private System.Windows.Forms.Button displaySecretButton;
         private System.Windows.Forms.PictureBox profilePictureBox;
         private System.Windows.Forms.Label logoutLabel;
+        private System.ComponentModel.BackgroundWorker downloadLabelBG;
+        private System.Windows.Forms.Panel hiddenTextPanel;
+        private System.ComponentModel.BackgroundWorker downloadFaveAlbumsBG;
+        private System.ComponentModel.BackgroundWorker downloadFaveArtistsBG;
+        private System.Windows.Forms.ComboBox artSizeSelect;
+        private System.Windows.Forms.Label artSizeLabel;
+        private System.Windows.Forms.CheckBox typeCheckbox;
+        private System.Windows.Forms.Label aboutLabel;
     }
 }
 
